@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24F74" minimumToolsVersion="Xcode 8.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="1">
+    <entity name="Album" representedClassName="Album" syncable="YES">
+        <attribute name="albumid" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="artist" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="album" inverseEntity="Artist" syncable="YES"/>
+        <relationship name="track" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Track" inverseName="album" inverseEntity="Track" syncable="YES"/>
+    </entity>
+    <entity name="Artist" representedClassName="Artist" syncable="YES">
+        <attribute name="artistid" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="album" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Album" inverseName="artist" inverseEntity="Album" syncable="YES"/>
+    </entity>
+    <entity name="Customer" representedClassName="Customer" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customerid" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="email" attributeType="String" syncable="YES"/>
+        <attribute name="fax" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstname" attributeType="String" syncable="YES"/>
+        <attribute name="lastname" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postalcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="employee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Employee" inverseName="customer" inverseEntity="Employee" syncable="YES"/>
+        <relationship name="invoice" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Invoice" inverseName="customer" inverseEntity="Invoice" syncable="YES"/>
+    </entity>
+    <entity name="Employee" representedClassName="Employee" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="birthdate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="employeeid" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fax" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstname" attributeType="String" syncable="YES"/>
+        <attribute name="hiredate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastname" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postalcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reportsto" optional="YES" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="customer" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Customer" inverseName="employee" inverseEntity="Customer" syncable="YES"/>
+    </entity>
+    <entity name="Genre" representedClassName="Genre" syncable="YES">
+        <attribute name="genreid" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="track" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Track" inverseName="genre" inverseEntity="Track" syncable="YES"/>
+    </entity>
+    <entity name="Invoice" representedClassName="Invoice" syncable="YES">
+        <attribute name="billingaddress" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="billingcity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="billingcountry" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="billingpostalcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="billingstate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="invoicedate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="invoiceid" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="total" attributeType="Decimal" syncable="YES"/>
+        <relationship name="customer" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="invoice" inverseEntity="Customer" syncable="YES"/>
+        <relationship name="invoiceline" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Invoiceline" inverseName="invoice" inverseEntity="Invoiceline" syncable="YES"/>
+    </entity>
+    <entity name="Invoiceline" representedClassName="Invoiceline" syncable="YES">
+        <attribute name="invoicelineid" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="quantity" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="unitprice" attributeType="Decimal" syncable="YES"/>
+        <relationship name="invoice" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Invoice" inverseName="invoiceline" inverseEntity="Invoice" syncable="YES"/>
+        <relationship name="track" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Track" inverseName="invoiceline" inverseEntity="Track" syncable="YES"/>
+    </entity>
+    <entity name="Mediatype" representedClassName="Mediatype" syncable="YES">
+        <attribute name="mediatypeid" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="track" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Track" inverseName="mediatype" inverseEntity="Track" syncable="YES"/>
+    </entity>
+    <entity name="Playlist" representedClassName="Playlist" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="playlistid" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="track" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Track" inverseName="playlist" inverseEntity="Track" syncable="YES"/>
+    </entity>
+    <entity name="Track" representedClassName="Track" syncable="YES">
+        <attribute name="bytes" optional="YES" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="composer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="milliseconds" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="trackid" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="unitprice" attributeType="Decimal" syncable="YES"/>
+        <relationship name="album" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="track" inverseEntity="Album" syncable="YES"/>
+        <relationship name="genre" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Genre" inverseName="track" inverseEntity="Genre" syncable="YES"/>
+        <relationship name="invoiceline" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Invoiceline" inverseName="track" inverseEntity="Invoiceline" syncable="YES"/>
+        <relationship name="mediatype" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Mediatype" inverseName="track" inverseEntity="Mediatype" syncable="YES"/>
+        <relationship name="playlist" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Playlist" inverseName="track" inverseEntity="Playlist" syncable="YES"/>
+    </entity>
+</model>

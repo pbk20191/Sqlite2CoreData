@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788.4" systemVersion="24F74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="2">
+    <entity name="Album" representedClassName="Sqlite2CoreDataTests.CDAlbum" syncable="YES" codeGenerationType="class">
+        <attribute name="albumid" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="artist" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="album" inverseEntity="Artist"/>
+        <relationship name="track" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Track" inverseName="album" inverseEntity="Track"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="albumid" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Artist" representedClassName="Sqlite2CoreDataTests.CDArtist" syncable="YES" codeGenerationType="class">
+        <attribute name="artistid" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="album" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Album" inverseName="artist" inverseEntity="Album"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="artistid" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Customer" representedClassName="Sqlite2CoreDataTests.CDCustomer" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="company" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="customerid" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="email" attributeType="String"/>
+        <attribute name="fax" optional="YES" attributeType="String"/>
+        <attribute name="firstname" attributeType="String"/>
+        <attribute name="lastname" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="postalcode" optional="YES" attributeType="String"/>
+        <attribute name="state" optional="YES" attributeType="String"/>
+        <relationship name="employee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Employee" inverseName="customer" inverseEntity="Employee"/>
+        <relationship name="invoice" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Invoice" inverseName="customer" inverseEntity="Invoice"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="customerid" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Employee" representedClassName="Sqlite2CoreDataTests.CDEmployee" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="birthdate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="employeeid" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="fax" optional="YES" attributeType="String"/>
+        <attribute name="firstname" attributeType="String"/>
+        <attribute name="hiredate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="lastname" attributeType="String"/>
+        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="postalcode" optional="YES" attributeType="String"/>
+        <attribute name="reportsto" optional="YES" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="state" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="customer" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Customer" inverseName="employee" inverseEntity="Customer"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="employeeid" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Genre" representedClassName="Sqlite2CoreDataTests.CDGenre" syncable="YES" codeGenerationType="class">
+        <attribute name="genreid" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="track" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Track" inverseName="genre" inverseEntity="Track"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="genreid" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Invoice" representedClassName="Sqlite2CoreDataTests.CDInvoice" syncable="YES" codeGenerationType="class">
+        <attribute name="billingaddress" optional="YES" attributeType="String"/>
+        <attribute name="billingcity" optional="YES" attributeType="String"/>
+        <attribute name="billingcountry" optional="YES" attributeType="String"/>
+        <attribute name="billingpostalcode" optional="YES" attributeType="String"/>
+        <attribute name="billingstate" optional="YES" attributeType="String"/>
+        <attribute name="invoicedate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="invoiceid" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="total" attributeType="Decimal"/>
+        <relationship name="customer" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Customer" inverseName="invoice" inverseEntity="Customer"/>
+        <relationship name="invoiceline" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Invoiceline" inverseName="invoice" inverseEntity="Invoiceline"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="invoiceid" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Invoiceline" representedClassName="Sqlite2CoreDataTests.CDInvoiceline" syncable="YES" codeGenerationType="class">
+        <attribute name="invoicelineid" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="quantity" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="unitprice" attributeType="Decimal"/>
+        <relationship name="invoice" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Invoice" inverseName="invoiceline" inverseEntity="Invoice"/>
+        <relationship name="track" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Track" inverseName="invoiceline" inverseEntity="Track"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="invoicelineid" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Mediatype" representedClassName="Sqlite2CoreDataTests.CDMediatype" syncable="YES" codeGenerationType="class">
+        <attribute name="mediatypeid" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="track" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Track" inverseName="mediatype" inverseEntity="Track"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="mediatypeid" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Playlist" representedClassName="Sqlite2CoreDataTests.CDPlaylist" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="playlistid" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <relationship name="track" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Track" inverseName="playlist" inverseEntity="Track"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="playlistid" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="Track" representedClassName="Sqlite2CoreDataTests.CdTrack" syncable="YES" codeGenerationType="class">
+        <attribute name="bytes" optional="YES" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="composer" optional="YES" attributeType="String"/>
+        <attribute name="milliseconds" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="trackid" attributeType="Integer 64" usesScalarValueType="NO"/>
+        <attribute name="unitprice" attributeType="Decimal"/>
+        <relationship name="album" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="track" inverseEntity="Album"/>
+        <relationship name="genre" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Genre" inverseName="track" inverseEntity="Genre"/>
+        <relationship name="invoiceline" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Invoiceline" inverseName="track" inverseEntity="Invoiceline"/>
+        <relationship name="mediatype" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Mediatype" inverseName="track" inverseEntity="Mediatype"/>
+        <relationship name="playlist" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Playlist" inverseName="track" inverseEntity="Playlist"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="trackid" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+</model>
