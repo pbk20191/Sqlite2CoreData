@@ -10,9 +10,9 @@
 @import FMDB;
 @import SQCDHelper;
 #import <CoreData/CoreData.h>
-#import "SqliteExtractor.h"
-
-
+@import SqliteExtractor;
+//@import SQCDDatabaseHelper;
+#import "_SqliteExtractor_constant.h"
 
 @implementation SQCDMigrationManager
 
@@ -320,7 +320,7 @@
     // TODO handle other values
     if ([propertyType isEqualToString:XCSTRING]) {
         value = [results stringForColumn:columnName];
-    } else if ([propertyType isEqualToString:XCINT64] || [propertyType isEqualToString:XCINT32]){
+    } else if ([propertyType isEqualToString:XCINT32] || [propertyType isEqualToString:XCINT64]){
         value = [NSNumber numberWithInt:[results intForColumn:columnName]];
     } else if ([propertyType isEqualToString:XCDECIMAL]){
         value = [NSDecimalNumber numberWithFloat:[[results stringForColumn:columnName] floatValue]];

@@ -8,7 +8,7 @@
 import Foundation
 
 
-@objc public extension NSString {
+ internal extension String {
     
     
     static func uncountableWords() -> [String] {
@@ -92,11 +92,11 @@ import Foundation
     
     func pluralize() -> String {
         var ret = self as String
-        if (ret.count > 0 && Self.uncountableWords().firstIndex(of: self.lowercased as String) != nil) {
+        if (ret.count > 0 && Self.uncountableWords().firstIndex(of: self.lowercased()) != nil) {
             var matched = false;
             for pair in Self.pluralRules() {
                 let regexString = pair[0]
-                let range = NSMakeRange(0, length)
+                let range = NSMakeRange(0, count)
                 do {
                     let regex = try NSRegularExpression(pattern: regexString, options: [.caseInsensitive])
                     matched = regex.firstMatch(in: self as String, options: [], range: range) != nil
@@ -106,7 +106,7 @@ import Foundation
                 }
                 if (matched) {
                     let replacement = pair[1]
-                    ret = self.replacingOccurrences(of: regexString, with: replacement, options: [.caseInsensitive, .regularExpression], range: range)
+                    ret = self.replacingOccurrences(of: regexString, with: replacement, options: [.caseInsensitive, .regularExpression])
                     break
                 }
             }
@@ -116,13 +116,13 @@ import Foundation
     
     func singularize() -> String {
         var ret = self as String
-        guard Self.uncountableWords().firstIndex(of: lowercased) != nil else {
+        guard Self.uncountableWords().firstIndex(of: lowercased()) != nil else {
             return self as String
         }
         var matched = false
         for pair in Self.singularRules() {
             let regxString = pair[0]
-            let range = NSMakeRange(0, length)
+            let range = NSMakeRange(0, count)
             do {
                 let regex = try NSRegularExpression(pattern: regxString, options: .caseInsensitive)
                 matched = regex.firstMatch(in: regxString, options: [], range: range) != nil
@@ -133,7 +133,7 @@ import Foundation
             }
             if matched {
                 let replacement = pair[1]
-                ret = self.replacingOccurrences(of: regxString, with: replacement, options: [.caseInsensitive, .regularExpression], range: range)
+                ret = self.replacingOccurrences(of: regxString, with: replacement, options: [.caseInsensitive, .regularExpression])
                 break
             }
         }
@@ -151,7 +151,7 @@ import Foundation
     
     func titleize() -> String {
         var ret = ""
-        var str = lowercased
+        var str = lowercased()
         let regexString = Self.nonTitlecasedWords().joined(separator: "$|^")
         str = str.replacingOccurrences(of: "_", with: " ", options: .regularExpression)
         let strArr = str.components(separatedBy: " ")
@@ -187,13 +187,13 @@ import Foundation
     }
     
     func tableize() -> String {
-        return (underscore() as NSString).pluralize()
+        return (underscore()).pluralize()
     }
     
     func classify() -> String {
         var a = (self as String).replacingOccurrences(of: ".*\\..*", with: "", options: .regularExpression)
-        a = (a as NSString).singularize()
-        a = (a as NSString).camelize()
+        a = (a ).singularize()
+        a = (a ).camelize()
         return a
     }
     
@@ -225,7 +225,7 @@ import Foundation
     }
     
     func underscore() -> String {
-        var ret = (self as String).replacingOccurrences(of: "::", with: "/", options: .regularExpression)
+        var ret = self.replacingOccurrences(of: "::", with: "/", options: .regularExpression)
         ret = ret.replacingOccurrences(of: "([A-Z]+)([A-Z][a-z])", with: "$1_$2", options: [.regularExpression])
         ret = ret.replacingOccurrences(of: "([a-z\\d])([A-Z])", with: "$1_$2", options: .regularExpression)
         ret = ret.replacingOccurrences(of: "-", with: "_")
@@ -241,16 +241,16 @@ import Foundation
     }
     
     func foreignKey() -> String {
-        (demodulize() as NSString).underscore() + "_id"
+        (demodulize() ).underscore() + "_id"
     }
     
     func foreignKeyWithoutIdUnderscore() -> String {
-        (demodulize() as NSString).underscore() + "id"
+        (demodulize() ).underscore() + "id"
 
     }
     
     func ordinalize() -> String {
-        let i = self.integerValue
+        let i = (self as NSString).integerValue
         let mod100 = i % 100
         if mod100 >= 11 && mod100 <= 13 {
             return String.init(format: "%ldth", i)

@@ -64,7 +64,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/bagbyeong-gwan/IDE/xcodes/Sqlite2CoreData/Sample/Chinook.sqlite"
+            argument = " /Users/bagbyeong-gwan/IDE/XcodeWorkSpace/Sqlite2CoreData/Sample/Chinook.sqlite"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

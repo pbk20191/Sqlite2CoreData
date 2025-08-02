@@ -8,6 +8,9 @@
 import Foundation
 import SqliteExtractor
 
+
+
+
 public class SQCDDataModelGenerator: NSObject {
     
     @objc public let helper:SQCDDatabaseHelper

@@ -23,15 +23,13 @@ let package = Package(
         .executableTarget(
             name: "Sqlite2CoreData", dependencies: [
                 "SqliteExtractor", .product(name: "FMDB", package: "fmdb"),
-                "SQCDHelper",
+                "SQCDHelper"
             ]),
-        .target(name: "SqliteExtractor", dependencies: [
-            "RegexKitLite",
-        ]),
-        .target(name: "RegexKitLite"),
         .target(name: "SQCDHelper", dependencies: [
-            "SqliteExtractor"
+            "SqliteExtractor",
         ]),
+        .target(name: "SqliteExtractor", dependencies: [ "_SqliteExtractor_constant"]),
+        .target(name: "_SqliteExtractor_constant"),
         .testTarget(
             name: "Sqlite2CoreDataTests",
             dependencies: ["Sqlite2CoreData"],

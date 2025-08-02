@@ -1,12 +1,21 @@
 //
-//  TypeMapper.h
-//  sourcefilegen
+//  _SqliteExtractor_constant.h
+//  Sqlite2CoreData
 //
-//  Created by aditya-d on 8/22/13.
-//  Copyright (c) 2013 aditya-d. All rights reserved.
+//  Created by 박병관 on 8/2/25.
 //
 
-#import <Foundation/Foundation.h>
+#ifndef _SqliteExtractor_constant_h
+#define _SqliteExtractor_constant_h
+
+#if __OBJC__
+
+#define XCNULLIFY       @"Nullify"
+#define XCNOACTION      @"No Action"
+#define XCCASCADE       @"Cascade"
+#define XCDENY          @"Deny"
+
+
 
 #define XCUNDEFINED             @"Undefined"
 #define XCINT16                 @"Integer 16"
@@ -22,8 +31,6 @@
 #define XCTRANFORMABLE          @"Transformable"
 
 
-@interface SQCDTypeMapper : NSObject
+#endif
 
-+(NSString*) xctypeFromType:(NSString*)sqlliteType;
-
-@end
+#endif /* _SqliteExtractor_constant_h */

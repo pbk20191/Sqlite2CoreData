@@ -10,6 +10,7 @@
 @import SQCDHelper;
 #import "SQCDMigrationManager.h"
 @import SqliteExtractor;
+//@import SQCDDatabaseHelper;
 
 int main(int argc, const char * argv[])
 {
