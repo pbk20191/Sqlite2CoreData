@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @import SQCDHelper;
-#import "SQCDMigrationManager.h"
 @import SqliteExtractor;
-//@import SQCDDatabaseHelper;
 
 int main(int argc, const char * argv[])
 {

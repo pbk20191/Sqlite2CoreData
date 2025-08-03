@@ -22,11 +22,10 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .executableTarget(
             name: "Sqlite2CoreData", dependencies: [
-                "SqliteExtractor", .product(name: "FMDB", package: "fmdb"),
                 "SQCDHelper"
             ]),
         .target(name: "SQCDHelper", dependencies: [
-            "SqliteExtractor",
+            "SqliteExtractor", .product(name: "FMDB", package: "fmdb"),
         ]),
         .target(name: "SqliteExtractor", dependencies: [ "_SqliteExtractor_constant"]),
         .target(name: "_SqliteExtractor_constant"),
