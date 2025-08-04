@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sqlite2CoreData"
-               BuildableName = "Sqlite2CoreData"
-               BlueprintName = "Sqlite2CoreData"
+               BlueprintIdentifier = "Sqlite2CoreData2"
+               BuildableName = "Sqlite2CoreData2"
+               BlueprintName = "Sqlite2CoreData2"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,18 +29,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Sqlite2CoreDataTests"
-               BuildableName = "Sqlite2CoreDataTests"
-               BlueprintName = "Sqlite2CoreDataTests"
-               ReferencedContainer = "container:">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -56,22 +44,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Sqlite2CoreData"
-            BuildableName = "Sqlite2CoreData"
-            BlueprintName = "Sqlite2CoreData"
+            BlueprintIdentifier = "Sqlite2CoreData2"
+            BuildableName = "Sqlite2CoreData2"
+            BlueprintName = "Sqlite2CoreData2"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "/Users/bagbyeong-gwan/IDE/xcodes/Sqlite2CoreData/Sample/Chinook.sqlite"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/tmp/foobar"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -83,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Sqlite2CoreData"
-            BuildableName = "Sqlite2CoreData"
-            BlueprintName = "Sqlite2CoreData"
+            BlueprintIdentifier = "Sqlite2CoreData2"
+            BuildableName = "Sqlite2CoreData2"
+            BlueprintName = "Sqlite2CoreData2"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>

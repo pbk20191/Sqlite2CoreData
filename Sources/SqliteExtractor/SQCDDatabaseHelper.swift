@@ -12,6 +12,7 @@ public class SQCDDatabaseHelper:NSObject, SQCDDatabaseHelperProtocol {
     
     
     let store:Store
+    
     @objc
     public override init() {
         self.store = Store()

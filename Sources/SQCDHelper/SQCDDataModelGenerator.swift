@@ -20,7 +20,7 @@ public class SQCDDataModelGenerator: NSObject {
     }
     
     @objc(generateCoreDataModelFromDBPath:outputDirectoryPath:fileName:)
-    public func generateCoreDataModel(fromDBPath dbPath: String, outputDirectoryPath: String, fileName: String) -> Bool {
+    public func generateCoreDataModel(fromDBPath dbPath: String, outputDirectoryPath: String, fileName: String?) -> Bool {
         let kXCDataModelDExtention   = "xcdatamodeld"
         let kXCDataModelExtention    = "xcdatamodel"
         let kXCDContents             = "contents"
@@ -53,8 +53,8 @@ public class SQCDDataModelGenerator: NSObject {
         }
         let xmlData = doc.xmlData(options: .nodePrettyPrint)
 
-        var path = fileName
-        if (fileName.isEmpty) {
+        var path = fileName ?? ""
+        if (path.isEmpty) {
             path = ((dbPath as NSString).lastPathComponent as NSString).deletingPathExtension
         }
         let xcdmdPath = (outputDirectoryPath as NSString).appendingPathComponent("\(path).\(kXCDataModelDExtention)") + "/"
