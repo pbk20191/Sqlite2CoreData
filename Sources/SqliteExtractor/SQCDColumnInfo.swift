@@ -6,7 +6,7 @@
 //
 import Foundation
 
-public class SQCDColumnInfo: NSObject {
+public struct SQCDColumnInfo {
     public var sqliteName: String = ""
     public var sqlliteType: String = ""
     public var sqliteDefaultValue: String? = nil
