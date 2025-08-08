@@ -37,7 +37,12 @@ public class SQCDDataModelGenerator {
         doc.version = "1.0"
         doc.characterEncoding = "UTF-8"
         doc.isStandalone = true
-        guard let tableInfos = helper.fetchTableInfos(dbPath) else {
+        let result = Result {
+            try helper.fetchTableInfos(dbPath)
+        }
+        guard case .success(let tableInfos) = result else {
+            
+            print("Error fetching table information from database \(dbPath): \(result)")
             print("No table information could be extracted from database ",dbPath);
             return false
         }

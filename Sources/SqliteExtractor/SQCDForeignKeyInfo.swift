@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class SQCDForeignKeyInfo: NSObject, NSCopying {
+public struct SQCDForeignKeyInfo {
     
     public var fromSqliteTableName = ""
     public var toSqliteTableName = ""
@@ -53,8 +53,8 @@ public class SQCDForeignKeyInfo: NSObject, NSCopying {
         
     }
     
-    public func copy(with zone: NSZone? = nil) -> Any {
-        let copy = SQCDForeignKeyInfo()
+    public func copy(with zone: NSZone? = nil) -> SQCDForeignKeyInfo {
+        var copy = SQCDForeignKeyInfo()
         copy.fromSqliteTableName = self.fromSqliteTableName
         copy.toSqliteTableName = self.toSqliteTableName
         copy.relationName = relationName

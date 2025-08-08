@@ -37,7 +37,12 @@ public class SQCDMigrationManager {
         manager.dbPath = dbPath
 
 
-        manager.tableDictionary = manager.helper.fetchTableInfos(dbPath) ?? [:]
+        do {
+            manager.tableDictionary = try manager.helper.fetchTableInfos(dbPath)
+        } catch {
+            NSLog("Failed to fetch table infos: \(error)")
+            return false
+        }
 
         let cdm = SQCDCoreDataManager(withModelPath: momnPath, outputDirectory: outputPath)
         let moc: NSManagedObjectContext! = cdm.managedObjectContext

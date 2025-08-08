@@ -10,7 +10,7 @@ import GRDB
 
 //import _SqliteExtractor_constant
 
-public class SQCDTableInfo {
+public struct SQCDTableInfo {
     
     public var columns = [String:SQCDColumnInfo]()
     public var sqliteName = ""
