@@ -9,19 +9,19 @@ import Foundation
 
 public class SQCDForeignKeyInfo: NSObject, NSCopying {
     
-    @objc public var fromSqliteTableName = ""
-    @objc public var toSqliteTableName = ""
-    @objc public var fromSqliteColumnName = ""
-    @objc public var toSqliteColumnName = ""
-    @objc public var relationName = ""
-    @objc public var invRelationName = ""
-    @objc public var toMany = false
-    @objc public var isInverse = false
-    @objc public var isOptional = false
-    @objc public var sqliteOnDeleteAction = String?.none
-    @objc public var xcOnDeleteAction = ""
+    public var fromSqliteTableName = ""
+    public var toSqliteTableName = ""
+    public var fromSqliteColumnName = ""
+    public var toSqliteColumnName = ""
+    public var relationName = ""
+    public var invRelationName = ""
+    public var toMany = false
+    public var isInverse = false
+    public var isOptional = false
+    public var sqliteOnDeleteAction = String?.none
+    public var xcOnDeleteAction = ""
 
-    @objc(nameForProperty:) public func nameForProperty(_ property:String) -> String {
+    public func nameForProperty(_ property:String) -> String {
         var columnName = property.lowercased()
         let components = columnName.components(separatedBy: "_")
         var output = ""
@@ -35,7 +35,7 @@ public class SQCDForeignKeyInfo: NSObject, NSCopying {
         return output
     }
     
-    @objc public func xmlRepresentation() -> XMLElement {
+    public func xmlRepresentation() -> XMLElement {
         let childAttr = XMLElement.init(name: "relationship")
         childAttr.addAttribute(.attribute(name: "name", stringValue: relationName))
         childAttr.addAttribute(.attribute(name: "destinationEntity", stringValue: toSqliteTableName.capitalized))
@@ -67,7 +67,7 @@ public class SQCDForeignKeyInfo: NSObject, NSCopying {
         return copy
     }
     
-    @objc public func pListRepresentation() -> [String:Any] {
+    public func pListRepresentation() -> [String:Any] {
         var relationPlistDict = [String:Any]()
         relationPlistDict["fromEntityName"] = fromSqliteTableName.capitalized
         relationPlistDict["toEntityName"] = toSqliteTableName.capitalized

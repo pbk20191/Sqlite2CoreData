@@ -6,7 +6,6 @@
 //
 import Foundation
 
-@objcMembers
 public class SQCDColumnInfo: NSObject {
     public var sqliteName: String = ""
     public var sqlliteType: String = ""
@@ -43,7 +42,6 @@ public class SQCDColumnInfo: NSObject {
         return childAttr
     }
 
-    @objc
     public func pListRepresentation() -> [AnyHashable : Any]? {
         var columnPlistDict: [AnyHashable : Any] = [:]
 

@@ -4,7 +4,7 @@ import _SqliteExtractor_constant
 import Foundation
 import GRDB
 
-public class SQCDMigrationManager: NSObject {
+public class SQCDMigrationManager {
 
     var dbPath = ""
     let dbQueue: DatabaseQueue
@@ -19,7 +19,7 @@ public class SQCDMigrationManager: NSObject {
         self.helper = helper
     }
 
-    @objc public
+    public
     static func startDataMigrationWithDBPath(_ dbPath: String!, momdPath momnPath: String!, outputPath: String!, helper: SQCDDatabaseHelper) -> Bool {
 
         let result = Result {

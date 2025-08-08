@@ -6,25 +6,25 @@
 //
 
 import Foundation
+import GRDB
 
 //import _SqliteExtractor_constant
 
-public class SQCDTableInfo: NSObject {
+public class SQCDTableInfo {
     
-    @objc public var columns = [String:SQCDColumnInfo]()
-    @objc public var sqliteName = ""
-    @objc public var sqlStatement = ""
-    @objc public var foreignKeys = [String:SQCDForeignKeyInfo]()
+    public var columns = [String:SQCDColumnInfo]()
+    public var sqliteName = ""
+    public var sqlStatement = ""
+    public var foreignKeys = [String:SQCDForeignKeyInfo]()
     
-    @objc public let helper:any SQCDDatabaseHelperProtocol
+    public let helper:any SQCDDatabaseHelperProtocol
     
-    @objc(initWithHelper:)
+    
     public init(_ helper:any SQCDDatabaseHelperProtocol) {
         self.helper = helper
-        super.init()
     }
     
-    @objc public func representedClassName() -> String {
+    public func representedClassName() -> String {
         let tableName = sqliteName.lowercased()
         let components = tableName.components(separatedBy: "_")
         var output = ""
@@ -34,7 +34,7 @@ public class SQCDTableInfo: NSObject {
         return output
     }
     
-    @objc public func primaryColumn() -> SQCDColumnInfo? {
+    public func primaryColumn() -> SQCDColumnInfo? {
         for (key, value) in columns {
             if (value.isPrimaryKey) {
                 return value
@@ -43,7 +43,7 @@ public class SQCDTableInfo: NSObject {
         return nil
     }
     
-    @objc public func isManyToMany() -> Bool {
+    public func isManyToMany() -> Bool {
         for (key, value) in columns {
             let foreginKeyInfo = foreignKeys[key]
             
@@ -71,7 +71,7 @@ public class SQCDTableInfo: NSObject {
 //    }
 
     
-    @objc public func xmlRepresentation() -> XMLElement {
+    public func xmlRepresentation() -> XMLElement {
         let entity = XMLElement.init(name: "entity")
         entity.addAttribute(.attribute(name: "name", stringValue: self.representedClassName()))
         entity.addAttribute(.attribute(name: "representedClassName", stringValue: self.representedClassName()))

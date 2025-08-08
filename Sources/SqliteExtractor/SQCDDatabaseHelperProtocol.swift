@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc public protocol SQCDDatabaseHelperProtocol {
+public protocol SQCDDatabaseHelperProtocol:AnyObject {
     
     var inverseRelationships:[String:[SQCDForeignKeyInfo]] {
         get
@@ -17,7 +17,6 @@ import Foundation
 //    -(SQCDForeignKeyInfo*) manyToManyRelationFromTable:(NSString*) fromTableName
 //                                               toTable:(NSString*) toTableName;
 
-    @objc(manyToManyRelationFromTable:toTable:)
     func manyToManyRelationFromTable(_ fromTableName:String,
                                      toTableName:String) -> SQCDForeignKeyInfo? 
     

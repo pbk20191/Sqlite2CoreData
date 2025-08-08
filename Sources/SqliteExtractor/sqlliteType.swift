@@ -12,7 +12,6 @@ import _SqliteExtractor_constant
 
 public class SQCDTypeMapper:NSObject {
 
-    @objc
     public static func string(for attribute: NSAttributeType) ->String {
         switch attribute {
         case .floatAttributeType:
@@ -54,8 +53,6 @@ public class SQCDTypeMapper:NSObject {
         }
     }
 
-    
-    @objc(xctypeFromType:)
     public static func xctypeFromType(_ sqlliteType:String) -> String {
         
         var str = sqlliteType as NSString

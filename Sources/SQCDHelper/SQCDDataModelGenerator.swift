@@ -11,15 +11,14 @@ import SqliteExtractor
 
 
 
-public class SQCDDataModelGenerator: NSObject {
+public class SQCDDataModelGenerator {
     
-    @objc public let helper:SQCDDatabaseHelper
+    public let helper:SQCDDatabaseHelper
     
-    @objc public init(helper:SQCDDatabaseHelper) {
+    public init(helper:SQCDDatabaseHelper) {
         self.helper = helper
     }
     
-    @objc(generateCoreDataModelFromDBPath:outputDirectoryPath:fileName:)
     public func generateCoreDataModel(fromDBPath dbPath: String, outputDirectoryPath: String, fileName: String?) -> Bool {
         let kXCDataModelDExtention   = "xcdatamodeld"
         let kXCDataModelExtention    = "xcdatamodel"

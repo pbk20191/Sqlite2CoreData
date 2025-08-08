@@ -32,7 +32,10 @@ let package = Package(
             "SqliteExtractor",
             .product(name: "GRDB", package: "GRDB.swift")
         ]),
-        .target(name: "SqliteExtractor", dependencies: [ "_SqliteExtractor_constant"]),
+        .target(name: "SqliteExtractor", dependencies: [
+            "_SqliteExtractor_constant",
+            .product(name: "GRDB", package: "GRDB.swift"),
+        ]),
         .target(name: "_SqliteExtractor_constant"),
         .testTarget(
             name: "Sqlite2CoreDataTests",

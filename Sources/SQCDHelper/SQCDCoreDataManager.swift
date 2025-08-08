@@ -9,7 +9,7 @@ import CoreData
 import Foundation
 
 
-public class SQCDCoreDataManager: NSObject {
+public class SQCDCoreDataManager {
     
     private let momdPath:String
     private let outputDirPath:String
@@ -73,29 +73,26 @@ public class SQCDCoreDataManager: NSObject {
     }()
     
     
-    @objc(initWithModelPath:outputDirectory:)
     public init(withModelPath modelPath: String, outputDirectory: String) {
         self.momdPath = modelPath
         self.outputDirPath = outputDirectory
-        super.init()
-        
     }
     
     
-    @objc public var persistentStoreCoordinator:NSPersistentStoreCoordinator? {
+    public var persistentStoreCoordinator:NSPersistentStoreCoordinator? {
         lock.withLock {
             return _persistentStoreCoordinator
         }
     }
     
     
-    @objc public var managedObjectModel:NSManagedObjectModel? {
+    public var managedObjectModel:NSManagedObjectModel? {
         lock.withLock {
             return _managedObjectModel
         }
     }
     
-    @objc public var managedObjectContext:NSManagedObjectContext? {
+    public var managedObjectContext:NSManagedObjectContext? {
         lock.withLock {
             return _managedObjectContext
         }

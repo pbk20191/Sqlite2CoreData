@@ -8,13 +8,12 @@ import Foundation
 import SQLite3
 import _SqliteExtractor_constant
 
-public class SQCDDatabaseHelper:NSObject, SQCDDatabaseHelperProtocol {
+public class SQCDDatabaseHelper:  SQCDDatabaseHelperProtocol {
     
     
     let store:Store
     
-    @objc
-    public override init() {
+    public init() {
         self.store = Store()
     }
     
@@ -28,13 +27,12 @@ public class SQCDDatabaseHelper:NSObject, SQCDDatabaseHelperProtocol {
         public var manyToManyRelationships = [String: [String: SQCDForeignKeyInfo]]()
     }
     
-    @objc
     public var inverseRelationships:[String:[SQCDForeignKeyInfo]] {
         get { store.inverseRelationships}
         set { store.inverseRelationships = newValue }
         _modify { yield &store.inverseRelationships }
     }
-    @objc
+
     public var manyToManyRelationships:[String: [String: SQCDForeignKeyInfo]] {
         get { store.manyToManyRelationships}
         set { store.manyToManyRelationships = newValue }
@@ -46,7 +44,7 @@ public class SQCDDatabaseHelper:NSObject, SQCDDatabaseHelperProtocol {
 
         return child
     }
-    @objc
+    
     public func fetchTableInfos(_ dbPath: String) -> [String:SQCDTableInfo]? {
         var _db: OpaquePointer!
     
@@ -314,7 +312,7 @@ public class SQCDDatabaseHelper:NSObject, SQCDDatabaseHelperProtocol {
         m2mForTable![key] = manyToManyInfo
         self.manyToManyRelationships[manyToManyInfo.fromSqliteTableName] = m2mForTable
     }
-    @objc
+
     public func manyToManyRelationFromTable(_ fromTableName: String, toTableName: String) -> SQCDForeignKeyInfo? {
         let m2mInfo = self.manyToManyRelationships[fromTableName]
         
